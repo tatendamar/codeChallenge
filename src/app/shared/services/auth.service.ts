@@ -51,14 +51,11 @@ export class AuthService {
       tap(user => {
         this.setAuth(user);
         this.decodeToken = this.helper.decodeToken(user.token);
-        this.redirect();
+        this.router.navigate(['/manage']);
       })
     )
   }
 
-  private redirect(): void {
-    this.router.navigate([this.redirectUrl]); //use the stored url here
-  }
 
   private setAuth(user) {
     this.jwtService.setToken(user.token);

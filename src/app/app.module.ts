@@ -27,7 +27,7 @@ import { UserDashboardModule } from './user-dashboard/user-dashboard.module';
     UserDashboardModule,
     StoreModule.forRoot({}, {})
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [
     AppComponent
   ]

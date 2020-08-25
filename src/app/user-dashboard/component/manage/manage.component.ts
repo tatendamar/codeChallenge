@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '../../services/stories.service';
+import { Stories } from '../../../shared/models/stories';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage',
@@ -7,12 +9,23 @@ import { StoriesService } from '../../services/stories.service';
   styleUrls: ['./manage.component.css']
 })
 export class ManageComponent implements OnInit {
-  list: [];
+  list$: Observable<Stories[]>;
 
-  constructor(private stories: StoriesService) { }
+  constructor(private stories: StoriesService) {
 
-  ngOnInit(): void {
-    this.stories.stories().subscribe(m => this.list = m);
   }
 
+  ngOnInit(): void {
+    this.storiesList();
+  }
+
+  storiesList() {
+    this.stories.stories().subscribe(m => {
+      this.list$ = m;
+    },
+      error => {
+        console.log('error', error);
+      }
+    );
+  }
 }

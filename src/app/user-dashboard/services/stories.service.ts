@@ -14,12 +14,8 @@ export class StoriesService {
 
   stories(): Observable<any> {
     return this.http.get(`${this.storiesUrl}/stories`).pipe(
-      map(response => {
-        if (!response) {
-          throw new Error('failed to load');
-        }
-
-        return response
+      map((response: Response) => {
+        return response;
       })
     )
   }

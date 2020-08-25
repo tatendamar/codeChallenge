@@ -12,10 +12,26 @@ export class StoriesService {
 
   constructor(private http: HttpClient) { }
 
-  stories(): Observable<any> {
+  stories(): Observable<Stories[]> {
     return this.http.get(`${this.storiesUrl}/stories`).pipe(
-      map((response: Response) => {
-        return response;
+      map((response: []) => {
+
+
+
+        return response.map(item => {
+          const data: Stories = {
+            id: item['id'],
+            createdBy: item['createdBy'],
+            summary: item['summary'],
+            description: item['description'],
+            type: item['type'],
+            cost: item['cost'],
+            complexity: item['complexity'],
+            estimatedHrs: item['estimatedHrs'],
+            status: item['status'],
+          };
+          return data;
+        });
       })
     )
   }

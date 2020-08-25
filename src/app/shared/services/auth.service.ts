@@ -46,17 +46,18 @@ export class AuthService {
             token: data['token']
           };
         }
-        this.isLoggedIn = true;
-        if (this.redirectUrl) {
-          this.router.navigate(['this.redirectUrl']);
-          this.redirectUrl = null;
-        }
+
       }),
       tap(user => {
         this.setAuth(user);
         this.decodeToken = this.helper.decodeToken(user.token);
+        this.redirect();
       })
     )
+  }
+
+  private redirect(): void {
+    this.router.navigate([this.redirectUrl]); //use the stored url here
   }
 
   private setAuth(user) {

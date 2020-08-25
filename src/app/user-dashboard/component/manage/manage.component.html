@@ -14,10 +14,28 @@
       </thead>
       <tbody *ngFor="let item of list$">
         <tr>
-          <th scope="row">{{item.summary}}}</th>
+          <th scope="row">{{item.summary}}</th>
           <td>{{item.description}}</td>
-          <td>{{item.type}}</td>
-          <td>{{item.complexity}}</td>
+          <td class="mr-6">
+            <div class="form-group">
+              <select class="form-control">
+                        <option value="">types</option>
+                        <option value="bugfix">Bugfix</option>
+                        <option value="dev">Development</option>
+                        <option value="qa">QA</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <select class="form-control">
+                        <option value="">complexity</option>
+                        <option value="low">Low</option>
+                        <option value="high">High</option>
+                        <option value="mid">Mid</option>
+              </select>
+            </div>
+          </td>
           <td>{{item.estimatedHrs}}</td>
           <td>{{item.status}}</td>
         </tr>

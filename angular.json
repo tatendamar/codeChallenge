@@ -24,7 +24,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "../frontEnd-coding/node_modules/bootstrap/scss/bootstrap.scss",
+              "src/styles.scss",
+              "../frontEnd-coding/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "../frontEnd-coding/node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "../frontEnd-coding/node_modules/@fortawesome/fontawesome-free/scss/solid.scss"
             ],
             "scripts": []
           },
@@ -119,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "frontEnd-coding"
+    }
+  },
+  "defaultProject": "frontEnd-coding",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

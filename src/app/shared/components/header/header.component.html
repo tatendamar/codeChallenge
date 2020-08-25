@@ -1,0 +1,25 @@
+<ngx-alerts>
+</ngx-alerts>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['']"><i class="fas fa-user-clock"></i> Issue Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto headerNav">
+      <li class="nav-item" *ngIf="!authService.logged()">
+        <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">Login</a>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link" dropdownToggle>
+          Welcome {{authService.decodeToken?.firstName}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+          <a class="dropdown-item" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> LogOut</a>
+          <a class="dropdown-item" [routerLink]="['/manage']" routerLinkActive="active"><i class="fas fa-user-edit"></i>Manage Tasks</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

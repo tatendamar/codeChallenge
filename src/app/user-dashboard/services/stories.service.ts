@@ -12,7 +12,7 @@ export class StoriesService {
 
   constructor(private http: HttpClient) { }
 
-  stories(): Observable<Stories[]> {
+  stories(): Observable<any> {
     return this.http.get(`${this.storiesUrl}/stories`).pipe(
       map((response: []) => {
 

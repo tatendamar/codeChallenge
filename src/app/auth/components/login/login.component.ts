@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       admin: this.userForm.value.admin,
     }
     ).subscribe(q => {
-      console.log(q);
+      console.log(q.role = this.userForm.value.admin);
       this.alertService.success(`Logged In as ${q.firstName}`);
     }
     );

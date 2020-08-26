@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also impobordert other style files */
+
+.ng-valid[required],
+.ng-valid.required {
+    bored-left: 5px solid #42a948
+}
+
+.ng-valid:not(form) {
+    border-left: #a94442;
+}

@@ -29,13 +29,12 @@ export class AuthService {
 
   login({ email, password, isAdmin }): Observable<any> {
     return this.http.post(`${this.authUrl}/signin`, {
-      email: email,
-      password: password,
-      isAdmin: isAdmin
+      email,
+      password,
+      isAdmin
     }).pipe(
       map(response => {
         const data = Object.assign({}, response);
-
 
         if (data) {
           return {

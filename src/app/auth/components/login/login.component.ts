@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { AlertService } from 'ngx-alerts';
+import { ProgressBarService } from '../../../shared/services/progress-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   check: boolean;
 
   constructor(
+    public progressBar: ProgressBarService,
     private auth: AuthService,
     fb: FormBuilder,
     private alertService: AlertService
@@ -32,16 +34,23 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.alertService.info('this is an info alert');
+    this.progressBar.startLoading();
     this.auth.login({
       email: this.userForm.value.email,
       password: this.userForm.value.password,
       isAdmin: this.userForm.value.admin,
     }
     ).subscribe(q => {
-      console.log(q.role);
+      this.progressBar.completeLoading();
+      this.progressBar.setSuccess();
       this.alertService.success(`Logged In as ${q.firstName}`);
-    }
+    },
+      (error) => {
+        this.progressBar.completeLoading();
+        this.progressBar.setError();
+        this.alertService.danger(`Failed Login`);
+        console.log(error);
+      }
     );
   }
 }

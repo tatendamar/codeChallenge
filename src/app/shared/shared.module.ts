@@ -10,6 +10,7 @@ import { AlertModule } from 'ngx-alerts';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './interceptor';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     RouterModule,
     BrowserModule,
     BrowserAnimationsModule,
+    NgProgressModule,
     BsDropdownModule.forRoot(),
     AlertModule.forRoot({
       maxMessages: 5,

@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import { JwtService } from '../../services/jwt.service';
 import { AlertService } from 'ngx-alerts';
 import { Router } from '@angular/router';
+import { NgProgress } from '@ngx-progressbar/core';
+import { ProgressBarService } from '../../services/progress-bar.service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +14,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    private progress: NgProgress,
+    public progressBar: ProgressBarService,
     public authService: AuthService,
     private jwtService: JwtService,
     private alertService: AlertService,
@@ -19,6 +23,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.progressBar.progressRef = this.progress.ref('progressBar');
   }
 
   logOut() {

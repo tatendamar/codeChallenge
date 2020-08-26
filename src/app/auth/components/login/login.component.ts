@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit {
     this.auth.login({
       email: this.userForm.value.email,
       password: this.userForm.value.password,
-      admin: this.userForm.value.admin,
+      isAdmin: this.userForm.value.admin,
     }
     ).subscribe(q => {
-      console.log(q.role = this.userForm.value.admin);
+      console.log(q.role);
       this.alertService.success(`Logged In as ${q.firstName}`);
     }
     );

@@ -27,11 +27,11 @@ export class AuthService {
   ) { }
 
 
-  login({ email, password, admin }): Observable<any> {
+  login({ email, password, isAdmin }): Observable<any> {
     return this.http.post(`${this.authUrl}/signin`, {
       email: email,
       password: password,
-      admin: admin
+      isAdmin: isAdmin
     }).pipe(
       map(response => {
         const data = Object.assign({}, response);
@@ -42,7 +42,7 @@ export class AuthService {
             id: data['id'],
             firstName: data['firstName'],
             lastName: data['lastName'],
-            role: admin ? 'admin' : 'user',
+            role: isAdmin ? 'admin' : 'user',
             token: data['token']
           };
         }

@@ -1,4 +1,4 @@
-export interface Stories {
+export class Stories {
   id: number;
   createdBy: number;
   summary: string;
@@ -8,4 +8,11 @@ export interface Stories {
   complexity: string;
   estimatedHrs: string;
   status: string;
+}
+
+export interface Story {
+  summary: string;
+  description: string;
+  type: string;
+  complexity: string;
 }

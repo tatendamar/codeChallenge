@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+  <div class="col-8 mt-4">
+    <h4>Add Story</h4>
+    <form [formGroup]="storyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="productName">Summary</label>
+        <input type="text" required name="name" formControlName="summary" class="form-control" id="productName" placeholder="Name">
+      </div>
+      <div class="mb-3 form-group">
+        <label for="productDescription">Description</label>
+        <textarea class="form-control" formControlName="description" name="description" class="form-control" id="productDescription" placeholder="Story Description"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group ml-2">
+          <select class="form-control" formControlName="type">
+                        <option value="">type</option>
+                        <option value="bugfix">Bugfix</option>
+                        <option value="development">Development</option>
+                        <option value="qa">QA</option>
+              </select>
+        </div>
+        <div class="form-group ml-4">
+          <select class="form-control" formControlName="complexity">
+                        <option value="">complexity</option>
+                        <option value="low">Low</option>
+                        <option value="high">High</option>
+                        <option value="mid">Mid</option>
+              </select>
+        </div>
+      </div>
+      <button class="btn btn-primary m-1" [routerLink]="['/manage/list']"><i class="fas fa-arrow-left"></i> Back To List</button>
+      <button class="btn btn-success m-1" [disabled]="!storyForm.valid" type="submit">Add Product <i class="fas fa-plus"></i></button>
+    </form>
+
+  </div>
+</div>

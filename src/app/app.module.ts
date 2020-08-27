@@ -11,7 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { HomeComponent } from './pages/home/home.component';
 import { UserDashboardModule } from './user-dashboard/user-dashboard.module';
-import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
@@ -31,7 +33,9 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AuthModule,
     HttpClientModule,
     UserDashboardModule,
-    StoreModule.forRoot({}, { metaReducers })
+    StoreModule.forRoot({}, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [

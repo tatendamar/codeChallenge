@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '../../services/stories.service';
-import { Stories } from '../../../shared/models/stories';
+import { Stories, Story } from '../../../shared/models/stories';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as fromActions from '../../+state/stories.actions';
+import { StoriesState } from '../../+state/stories.reducer';
+import { storyQuery } from '../../+state/stories.selectors';
 
 @Component({
   selector: 'app-manage',
@@ -9,23 +13,20 @@ import { Observable } from 'rxjs';
   styleUrls: ['./manage.component.css']
 })
 export class ManageComponent implements OnInit {
-  list$: Observable<Stories[]>;
+  stories$: Observable<Stories[] | Story[]>;
 
-  constructor(private stories: StoriesService) {
+  constructor(
+    private stories: StoriesService,
+    private store: Store<StoriesState>) {
 
   }
 
   ngOnInit(): void {
+    this.store.dispatch(fromActions.loadStories());
     this.storiesList();
   }
 
   storiesList() {
-    this.stories.stories().subscribe(m => {
-      this.list$ = m;
-    },
-      error => {
-        console.log('error', error);
-      }
-    );
+    this.stories$ = this.store.pipe(select(storyQuery.getAllStories));
   }
 }

@@ -50,7 +50,7 @@ export class AuthService {
       tap(user => {
         this.setAuth(user);
         this.decodeToken = this.helper.decodeToken(user.token);
-        this.router.navigate(['/manage']);
+        this.router.navigate(['/manage/list']);
       })
     )
   }

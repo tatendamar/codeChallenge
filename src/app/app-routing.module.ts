@@ -5,6 +5,10 @@ import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  {
+    path: 'manage',
+    loadChildren: () => import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
+  }
 ];
 
 

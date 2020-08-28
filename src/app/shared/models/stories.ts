@@ -1,5 +1,5 @@
 export class Stories {
-  id: number;
+  id: string;
   createdBy: number;
   summary: string;
   description: string;

@@ -16,7 +16,7 @@ import { updateStorySuccess } from '../../+state/stories.actions';
 })
 export class StoryComponent implements OnInit {
   story$: Observable<Stories>;
-  storyModel: any = {};
+  storyModel: Stories;
 
 
   constructor(
@@ -32,15 +32,36 @@ export class StoryComponent implements OnInit {
 
     this.story$ = this.store.pipe(select(selectedStory));
 
-    this.store.pipe(select(selectedStory)).subscribe(story =>
-      this.storyModel = Object.assign(new Stories(), story)
-    )
-  }
-  accept() {
-
+    // this.store.pipe(select(selectedStory)).subscribe(story =>
+    //   this.storyModel = Object.assign(new Stories(), story)
+    // );
   }
 
-  reject() {
+  accept(event, story) {
+    console.log(story);
+    this.storyModel = { ...story };
+
+    const update: Update<Stories> = {
+      id: this.storyModel.id,
+      changes: {
+        ...this.storyModel,
+        status: 'accepted'
+      }
+    }
+    this.store.dispatch(updateStorySuccess({ update }));
+  }
+
+  reject(event, story) {
+    this.storyModel = { ...story };
+
+    const update: Update<Stories> = {
+      id: this.storyModel.id,
+      changes: {
+        ...this.storyModel,
+        status: 'rejected'
+      }
+    }
+    this.store.dispatch(updateStorySuccess({ update }));
   }
 
 }

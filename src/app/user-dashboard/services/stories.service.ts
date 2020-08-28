@@ -98,24 +98,19 @@ export class StoriesService {
     );
   }
 
-  updateStory(id: number | string, status: string): Observable<Stories> {
-    return this.http.put(`${this.storiesUrl}/${id}/${status}`, {
+  updateStory(
+    id: string | number,
+    changes: Partial<Stories>
+  ): Observable<any> {
+    return this.http.put(`http://localhost:3000/api/v1/stories/${id}/${changes.status}`, {
       id,
-      status
+      changes: changes.status
     }).pipe(
-      map(response => {
+      map(data => {
 
         return {
-          id: response['id'],
-          createdBy: response['createdBy'],
-          summary: response['summary'],
-          description: response['description'],
-          type: response['description'],
-          cost: response['cost'],
-          complexity: response['complexity'],
-          estimatedHrs: response['estimatedHrs'],
-          status: response['status']
-        }
+          ...data
+        };
       })
     )
   }

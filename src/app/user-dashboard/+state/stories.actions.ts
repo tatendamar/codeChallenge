@@ -62,6 +62,6 @@ export const loadStoryFailure = createAction(
 
 export const updateStorySuccess = createAction(
   '[Update Story Effect] Update Story Success',
-  props<{ story: Stories }>()
+  props<{ update: Update<Stories> }>()
 );
 

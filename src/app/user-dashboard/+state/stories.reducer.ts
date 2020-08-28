@@ -36,17 +36,14 @@ export const storiesReducer = createReducer(
     return {
       ...state,
       selectedStory: action.selectedStory
-    }
+    };
   }),
+
 
   on(StoryActions.updateStorySuccess, (state, action) => {
     return {
       ...adapter.updateOne(
-        {
-          id: action.story.id,
-          changes: action.story
-        },
-        state
+        action.update, state
       )
     };
   }),

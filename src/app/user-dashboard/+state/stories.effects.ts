@@ -61,8 +61,8 @@ export class StoriesEffects {
         ofType(fromStoriesActions.updateStorySuccess),
         concatMap(action =>
           this.storiesService.updateStory(
-            action.story.id,
-            action.story.status
+            action.update.id,
+            action.update.changes
           )
         ),
         tap(() => this.router.navigate(['/mange/list']))
